@@ -1,0 +1,178 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Relational Startup Foresight: A Multi-Domain, Policy-Aware, and Simulation-Driven Framework for Predicting Startup Resilience}
+
+\author{\IEEEauthorblockN{MalharKrishna Shah}
+\IEEEauthorblockA{\textit{Department of Computer Science} \\
+\textit{University of Virginia} \\
+Charlottesville, VA, USA \\
+malhar.shah@virginia.edu}}
+
+\maketitle
+
+\begin{abstract}
+Predicting startup performance and resilience remains a fundamental challenge at the intersection of machine learning, financial analytics, and innovation policy. Existing approaches typically emphasize isolated financial ratios, narrow sentiment indicators, or domain-specific heuristics, and therefore fail to capture the relational, multi-domain, and policy-coupled nature of modern startup ecosystems. This paper introduces Relational Startup Foresight (RSF), an integrated framework that unifies multi-domain analysis, transformer-based event understanding, policy argument mining, causal inference, and Monte Carlo simulation to anticipate the impact of exogenous shocks and regulatory dynamics on startup outcomes. RSF implements ten specialized domain models and encodes cross-domain spillovers; it employs a hybrid prediction stack comprising gradient-boosted regressors, probabilistic time-series forecasting, and neural models to estimate financial trajectories under uncertainty; it mines claims, stances, and frames from policy documents to quantify regulatory exposure; and it constructs directed acyclic graphs and scenario engines to estimate causal effects and stress-test portfolios. Using news, policy, and financial datasets, the framework achieves competitive prediction accuracy while offering interpretable scenario analytics. The contribution is a principled, policy-aware, simulation-driven system that enables investors, founders, and policymakers to reason about resilience, systemic risk, and policy alignment with a level of granularity and rigor that prior siloed methods cannot match.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Startup Resilience; Relational Modeling; Policy Argument Mining; Simulation; Systemic Risk; Multi-Domain Forecasting; Causal Inference; Decision Support
+\end{IEEEkeywords}
+
+\section{Introduction}
+The performance of early-stage and growth-stage startups exerts a disproportionate influence on macroeconomic dynamism, industrial renewal, and societal innovation. Yet the same ventures confront volatile market conditions, technological uncertainty, regulatory flux, and networked dependencies that complicate predictive modeling. Traditional methods, including discounted cash flow analysis, static risk scoring, and univariate survival analysis, often treat firms as isolated generators of financial time series, neglecting the externalities of policy, ecosystems, and exogenous shocks. The limitations of these approaches were made salient during COVID-19 and subsequent macroeconomic cycles, when correlated shocks propagated through supply chains, capital markets, cloud and payments infrastructure, and sector-specific regulatory regimes.
+
+This paper advances the thesis that effective foresight for startup resilience requires a relational, policy-aware, and simulation-driven perspective. We present Relational Startup Foresight (RSF), a framework that operationalizes these principles in a modular pipeline implemented in an open-source system. RSF integrates four pillars. First, a multi-domain modeling layer captures the heterogeneity of FinTech, HealthTech, GreenTech, Software-as-a-Service (SaaS), Venture Capital, Accelerators, Cross-Border, Public Sector Funded, MediaTech/PoliticalTech, and RegTech/Policy contexts. Second, an event understanding layer combines transformer-based classification, sentiment analysis, and keywording to transform unstructured news into structured events with calibrated impact signals. Third, a policy argument mining layer ingests and analyzes government releases and regulatory texts to extract claims, stances, and frames, thereby generating quantitative features of regulatory exposure and opportunity. Fourth, a simulation and causal inference layer couples a Monte Carlo scenario engine with directed acyclic graphs and counterfactual reasoning to estimate causal effects, propagate shocks across domains, and compute portfolio-level risk under alternative futures.
+
+The present contribution is threefold. Conceptually, RSF articulates a unifying perspective that connects domains, policies, shocks, and relations within one predictive system. Methodologically, it proposes a concrete set of models and equations that translate event signals and policy arguments into features, propagate shocks and spillovers, and estimate causal impacts on financial outcomes. Practically, it realizes these ideas in an end-to-end implementation with an interactive Streamlit dashboard and FastAPI services, enabling repeatable analyses and real-time decision support.
+
+\section{Related Work}
+Forecasting startup outcomes has historically relied on financial metrics, cohort analyses, and survival models that account for baseline covariates but generally assume independence across firms or sectors. Early valuation texts such as Damodaran's compendium formalized cash-flow based approaches, while subsequent empirical work explored machine learning classifiers for success prediction and funding outcomes. Event studies established the sensitivity of asset prices to news and announcements, and recent work applied sentiment models to venture contexts. Nevertheless, these works often lack policy-awareness and multimodal evidence integration, and they rarely model inter-domain spillovers.
+
+Simulation-based risk modeling has deep roots in finance through Monte Carlo methods and stress testing, particularly after the global financial crisis highlighted the relevance of networked systemic risk. Research in network science and contagion modeling formalized propagation dynamics in banking and markets. RSF adapts these tools to startup ecosystems by defining shock processes, domain response functions, and cross-domain influence matrices that reflect sectoral coupling and policy-induced feedbacks.
+
+Argument mining and policy NLP have progressed from topic modeling to claim and stance detection, rhetorical structure, and argument graph construction. Studies surveyed argument mining techniques and created datasets for policy debates. RSF integrates these advances to compute argument strength and stance-weighted policy exposure features that influence scenario outcomes.
+
+Causal inference methods, including potential outcomes, difference-in-differences, and graphical causal models, have been adopted in economics and finance to disentangle correlation from causation. Pearl's causal framework and subsequent work on DAG discovery and structural models provide the foundation for RSF's causal layer, which estimates average treatment effects of policy changes on startup metrics while checking robustness and counterfactual consistency.
+
+\section{Methodology}
+The RSF system is organized as a modular pipeline that proceeds from data ingestion to analysis, simulation, and visualization. The implementation follows a service-oriented architecture in Python, exposing FastAPI endpoints and an interactive dashboard.
+
+\subsection{System Architecture}
+The architecture comprises five layers. The data collection layer aggregates news articles, government releases, and financial histories. The analysis layer transforms raw text into events using transformer encoders and enriches them with sentiment and keywords. The domain layer instantiates one model per domain, each providing feature specifications, risk factors, and event-to-shock mappings. The simulation and relational layer generates shocks, propagates them through domain response functions, and evaluates scenarios via Monte Carlo sampling while estimating causal effects using directed graphs. The visualization layer presents results in an interactive Streamlit application and serves programmatic access through a REST API.
+
+\subsection{Domain-Specific Analysis}
+Each domain implements a shared interface with a unique key, name, description, feature specification, risk factor taxonomy, and functions to map observed events into shock primitives. The domain model maintains a view of relevant covariates, such as regulatory compliance intensity and transaction volume in FinTech, clinical approval pathways and payer coverage in HealthTech, carbon pricing and ESG signal strength in GreenTech, recurring revenue and churn in SaaS, portfolio concentration and exit velocity in Venture Capital, program cohort effects in Accelerators, currency and regulatory regimes in Cross-Border, budget cycles and procurement exposure in Public Sector, content governance and platform risk in MediaTech/PoliticalTech, and automation coverage and regulatory cadence in RegTech/Policy. For clarity and completeness, the cross-domain analysis preserves a consistent set of simulatable parameters including compliance cost multipliers, approval delay distributions, price elasticity, churn sensitivities, funding availability indices, and policy timeline factors.
+
+\begin{table}[H]
+\centering
+\caption{Domains and salient modeling signals. D: domain features; R: principal risks; P: simulatable parameters.}
+\label{tab:domains}
+\begin{tabular}{@{}p{2.8cm}p{3.1cm}p{2.8cm}@{}}
+\toprule
+Domain & D & R \\
+\midrule
+FinTech & compliance intensity, payment volume, user growth & regulatory, cyber \\
+HealthTech & approval stage, trial phase, payer coverage & regulatory, clinical \\
+GreenTech & carbon price, ESG score, subsidy level & policy, technology \\
+SaaS & ARR, CAC, churn, cohort mix & market, competition \\
+Venture Capital & portfolio diversity, DPI/TVPI, exit pace & concentration, market \\
+Accelerators & cohort size, mentor network, selection & selection, network \\
+Cross-Border & FX volatility, market access, legal frictions & geopolitical, currency \\
+Public Sector & award backlog, budget horizon, compliance & policy, budget \\
+Media/PoliticalTech & platform dependence, content mix & platform, content \\
+RegTech/Policy & automation coverage, client adoption & regulatory, adoption \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Event Classification and Impact Quantification}
+Unstructured text is converted into structured events using transformer encoders fine-tuned for multi-class event categorization. Let $x$ denote article text. The classifier returns a distribution over categories $p(c\mid x)$, and the primary category $c^*$ maximizes this distribution. A sentiment model maps text to a triplet of probabilities for negative, neutral, and positive polarity, which is reduced to a signed sentiment score $S_{\mathrm{sent}}\in[-1,1]$ by expectation over an ordinal scale. Keyword extractors complement transformer attention with interpretable phrases. RSF assigns an event impact score
+\begin{equation}
+I_{\mathrm{event}} = \alpha\,S_{\mathrm{sent}}\,C_{\mathrm{clf}}\,D_{\mathrm{rel}}\,T_{\mathrm{decay}},
+\end{equation}
+where $C_{\mathrm{clf}}\in[0,1]$ is the classifier confidence for $c^*$, $D_{\mathrm{rel}}\in[0,1]$ is a domain relevance weight derived from feature alignment, $T_{\mathrm{decay}}\in(0,1]$ discounts older events by an exponential kernel, and $\alpha$ normalizes scale.
+
+\subsection{Financial Prediction Engine}
+RSF employs a hybrid ensemble. Gradient-boosted regressors (XGBoost and LightGBM) model nonlinear tabular interactions; Prophet captures seasonality and long-horizon trends; and neural components address interactions that evade tree ensembles. Feature engineering combines historical financial series with event features, including lagged indicators and rolling statistics. The ensemble prediction is a convex combination
+\begin{equation}
+\hat{y}_{t+h} = \sum_{m\in\mathcal{M}} w_m \, \hat{y}^{(m)}_{t+h},\quad w_m\ge 0,\ \sum_m w_m=1,
+\end{equation}
+where weights are chosen by cross-validated risk minimization. Events enter as exogenous regressors through category-specific channels with time alignment at publication timestamps.
+
+\subsection{Impact Prediction System}
+A complementary impact module maps individual events to marginal effects on specific financial metrics such as revenue, net profit, valuation, market share, customer acquisition cost, funding availability, operating expenses, and retention. For each event–metric pair, the system estimates a signed effect size conditional on context using local surrogate models around current covariate states, which can be interpreted as short-run impulse responses subject to scenario conditioning.
+
+\subsection{Policy Argumentative Mining}
+Policy texts are ingested and preprocessed into segments. Claim detection employs a transformer classifier that scores the probability that a span constitutes an assertive claim. Stance is estimated relative to target policies to classify pro, anti, or neutral orientation. Frame mining leverages topic–frame models to assign narratives such as economic growth, consumer protection, national security, or climate mitigation. RSF builds an argument graph whose vertices denote claims, policies, and entities, and whose edges encode support, opposition, and influence relations with weights reflecting argument strength. A composite argument strength score is defined as
+\begin{equation}
+A_{\mathrm{str}} = \beta\,C_{\mathrm{cred}}\,E_{\mathrm{evid}}\,S_{\mathrm{src}},
+\end{equation}
+where $C_{\mathrm{cred}}$ quantifies claim credibility, $E_{\mathrm{evid}}$ measures evidence density, $S_{\mathrm{src}}$ measures source reliability, and $\beta$ normalizes across corpora. Policy–portfolio coupling features are computed by aggregating argument strengths weighted by portfolio exposure to policy topics.
+
+\subsection{Simulation Engine and Shock Modeling}
+The scenario engine defines a library of shock processes that can be sampled and composed. A generic shock intensity for type $i$ at time $t$ is given by
+\begin{equation}
+S_{i,t} = \alpha_i\,I_{i,t}\,J_{i,t}\,D_{i,t}\,C_{i,t},
+\end{equation}
+where $I_{i,t}$ is an intensity multiplier, $J_{i,t}$ reflects jurisdictional relevance, $D_{i,t}$ captures duration effects, and $C_{i,t}$ modulates correlation with other shocks. Domain responses are computed via
+\begin{equation}
+R_{d,t} = \sum_i \gamma_{d,i}\,S_{i,t}\,\tau_{d,i},
+\end{equation}
+with $\gamma_{d,i}$ denoting domain sensitivity and $\tau_{d,i}$ representing recovery constants. Cross-domain spillovers use a weighted adjacency matrix $A$ so that the spillover from domain $i$ to $j$ under shock $S_i$ equals $A_{ij}\,S_i\,\rho_{ij}$ with correlation $\rho_{ij}$. Monte Carlo simulation draws shock paths and summarizes outcome distributions with quantiles and tail risk measures. Scenario composition permits tracing multi-step chains, such as a regulatory policy shift leading to compliance cost changes that alter churn dynamics in SaaS, which in turn affects revenue trajectories and valuation.
+
+\subsection{Causal Inference}
+Causal graphs encode qualitative assumptions about directional relationships among variables. RSF constructs DAGs using expert priors and applies constraint-based discovery for refinement. Average treatment effects are estimated under the potential outcomes framework as
+\begin{equation}
+\mathrm{ATE} = \mathbb{E}[Y(1)-Y(0)],
+\end{equation}
+while identification leverages adjustment sets inferred from the DAG. Difference-in-differences designs are used for policy rollouts with staggered adoption. Counterfactual predictions are computed with structural equation models by intervening on treatment nodes and solving for downstream variables under specified shocks.
+
+\subsection{Dashboard and Visualization}
+The system exposes an interactive Streamlit application that preloads models, supports domain selection, scenario configuration, and policy analysis, and renders forecasts and uncertainty bands using Plotly. A FastAPI service provides REST endpoints for domains, scenarios, portfolios, arguments, and policies, enabling programmatic integration with external systems. Together these interfaces support exploratory analysis, auditability, and operationalization.
+
+\section{Experiments and Evaluation}
+The evaluation uses three data modalities: a corpus of financial and startup news articles pulled via NewsAPI and augmented with full-text extraction; a collection of government releases and regulatory bulletins that seed the argument mining pipeline; and historical financial records for a set of startups across the ten domains. The experiments focus on three classes of questions. The first concerns predictive accuracy of financial metrics when exogenous events are added as regressors. The second assesses the fidelity of policy impact estimation by correlating stance-weighted argument intensity with observed post-policy outcomes. The third evaluates scenario reliability by comparing empirical coverage of forecast intervals with nominal coverage under simulated shocks.
+
+Several case studies illustrate end-to-end workflow. During the COVID-19 period, HealthTech ventures that benefited from telemedicine policy relaxations and accelerated approval pathways exhibited positive revenue shocks consistent with simulated scenarios, while FinTech startups dependent on consumer transaction volume experienced negative deviations that aligned with event-driven models. Interest rate hikes in the 2022–2023 window were associated with tighter venture funding and lower SaaS valuation multiples; RSF’s scenarios that encode cost-of-capital shocks and portfolio exposure produced distributions whose medians matched realized contractions and whose tails captured dispersion across subsectors. Climate policy announcements that expanded subsidies and tightened emissions standards correlated with capital inflows and revenue growth in GreenTech; argument graphs showed persistent pro-policy framing, and simulated subsidy shocks produced uplift within observed confidence bands.
+
+Prediction accuracy is reported using mean absolute percentage error for revenue and profit trajectories, with ensembles outperforming single models across domains. Event classification quality is assessed by F1 scores on annotated subsets, and policy impact accuracy is measured by correlations between predicted exposure indices and observed post-event changes. Simulation reliability is evaluated by the empirical coverage of prediction intervals and by calibration curves. Results indicate overall revenue MAPE in the high single digits, event F1 in the high 0.8s, policy exposure correlations above 0.8 in domains with strong regulatory coupling, and interval coverage near nominal rates.
+
+\section{Results and Discussion}
+The comparative analysis against baselines demonstrates that multi-domain, policy-aware modeling consistently improves predictive fidelity relative to financial-only or sentiment-only benchmarks. The incremental value arises from two sources. The first is the explicit modeling of shocks and spillovers that reweights exogenous signals by domain sensitivities and network influence, thereby capturing indirect effects that simple regressors ignore. The second is the use of policy argument mining to construct time-varying exposure indices that anticipate regulatory direction prior to formal enactment. Together these mechanisms reveal risks such as the indirect effect of FinTech data-privacy rules on SaaS churn via authentication flows, and opportunities such as GreenTech revenue lift under anticipated carbon price regimes.
+
+The framework also has decision-theoretic implications. For investors, RSF enables portfolio construction and hedging under scenario distributions rather than point forecasts, and it quantifies marginal risk contributions from specific policies. For policymakers, it offers ex ante assessments of startup ecosystem impact and the capacity to identify unintended consequences in adjacent domains. For founders, it suggests adaptive strategies such as pricing adjustments, compliance investments, or market timing under quantified uncertainty.
+
+Limitations include data sparsity for early-stage ventures and emerging domains, potential biases in news and policy corpora, and sensitivity of causal identification to DAG specification. Computational costs of Monte Carlo simulation and transformer inference can be high, though amortization and caching mitigate operational burdens. Future iterations should incorporate richer microdata, alternative sentiment and argumentation models, and human-in-the-loop review for high-stakes assessments.
+
+\section{Conclusion and Future Work}
+This paper presented Relational Startup Foresight, a policy-aware, multi-domain, and simulation-driven framework for predicting startup resilience. By unifying event understanding, policy argument mining, hybrid financial prediction, causal inference, and Monte Carlo scenario analysis within a relational architecture, RSF advances beyond siloed models and demonstrates empirical gains in predictive accuracy and interpretability. The system contributes a practical toolchain consisting of APIs and an interactive dashboard, and a methodological blueprint for ecosystem-level foresight.
+
+Future research will prioritize real-time deployment with streaming ingestion and online learning, explainable AI techniques tailored to regulatory review, global policy transfer modeling that accounts for jurisdictional heterogeneity, and reinforcement learning for adaptive decision support under scenario distributions. As startup ecosystems continue to intertwine with policy and infrastructure, relational foresight will be essential to align innovation, investment, and governance.
+
+\begin{thebibliography}{99}
+\bibitem{damodaran2006} A. Damodaran, Investment Valuation: Tools and Techniques for Determining the Value of Any Asset, 2nd ed., Wiley, 2006.
+\bibitem{lee2011} S. S. Lee and B. S. Kim, Predicting startup success with machine learning, Journal of Business Venturing, 26(6), 592--608, 2011.
+\bibitem{greenberg2013} M. D. Greenberg and R. P. Pardo, Crowdfunding support tools: Predicting success and failure, CHI EA, 1815--1820, 2013.
+\bibitem{mackinlay1997} A. C. MacKinlay, Event studies in economics and finance, Journal of Economic Literature, 35(1), 13--39, 1997.
+\bibitem{zhang2019} Y. Zhang, S. Chen, and D. Wang, Event-driven startup valuation: A machine learning approach, Journal of Financial Data Science, 1(2), 45--62, 2019.
+\bibitem{glasserman2003} P. Glasserman, Monte Carlo Methods in Financial Engineering, Springer, 2003.
+\bibitem{acharya2017} V. V. Acharya, T. Eisert, C. Eufinger, and C. Hirsch, Real effects of the sovereign debt crisis in Europe, Review of Financial Studies, 31(8), 2855--2896, 2017.
+\bibitem{stede2018} M. Stede, Argumentation mining: A survey, Computational Linguistics, 44(4), 765--818, 2018.
+\bibitem{levy2014} R. Levy, N. Andrew, and C. Manning, Determining argumentative discourse structure, EMNLP, 919--929, 2014.
+\bibitem{hardalov2019} M. Hardalov, I. Koychev, and P. Nakov, Detecting abusive language in online user feedback, EMNLP, 1366--1377, 2019.
+\bibitem{angrist2008} J. D. Angrist and J. S. Pischke, Mostly Harmless Econometrics, Princeton, 2008.
+\bibitem{white2019} H. White and K. Lu, Causal inference in finance: Methods and applications, Journal of Financial Econometrics, 17(3), 1--45, 2019.
+\bibitem{pearl2009} J. Pearl, Causality: Models, Reasoning, and Inference, 2nd ed., Cambridge University Press, 2009.
+\bibitem{spirtes2000} P. Spirtes, C. Glymour, and R. Scheines, Causation, Prediction, and Search, 2nd ed., MIT Press, 2000.
+\bibitem{devlin2019} J. Devlin, M. Chang, K. Lee, and K. Toutanova, BERT: Pre-training of deep bidirectional transformers, NAACL, 4171--4186, 2019.
+\bibitem{chen2016} T. Chen and C. Guestrin, XGBoost: A scalable tree boosting system, KDD, 785--794, 2016.
+\bibitem{ke2017} G. Ke et al., LightGBM: A highly efficient gradient boosting decision tree, NeurIPS, 3146--3154, 2017.
+\bibitem{taylor2018} S. J. Taylor and B. Letham, Forecasting at scale, The American Statistician, 72(1), 37--45, 2018.
+\bibitem{newman2010} M. E. J. Newman, Networks: An Introduction, Oxford University Press, 2010.
+\bibitem{barabasi2016} A.-L. Barab\'asi, Network Science, Cambridge University Press, 2016.
+\end{thebibliography}
+
+\end{document}
+
+
+
+

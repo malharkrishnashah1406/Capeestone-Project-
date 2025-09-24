@@ -1,0 +1,64 @@
+{
+    "company": "virginia ",
+    "timestamp": "2025-05-23T10:14:43.465970",
+    "revenue_metrics": {
+        "Total Revenue": "$0.00",
+        "Revenue Growth Rate": "0.00%",
+        "Net Profit/Loss": "$0.00",
+        "EBITDA": "$0.00",
+        "Gross Profit Margin": "0.00%",
+        "Operating Profit Margin": "0.00%",
+        "Net Profit Margin": "0.00%",
+        "Free Cash Flow": "$0.00",
+        "Burn Rate": "$0.00",
+        "Break-even Point": "0.0 months"
+    },
+    "funding_metrics": {
+        "Total Funding Raised": "$0.00",
+        "Funding Rounds": 0,
+        "Valuation": "$0.00",
+        "Investor Concentration Risk": "0.00%",
+        "VC Dependency": "0.00%",
+        "Equity Dilution": "0.00%",
+        "Convertible Debt": "$0.00",
+        "IPO Status": "No",
+        "Stock Price Growth": "0.00%",
+        "M&A Activity": 0
+    },
+    "market_metrics": {
+        "Market Share": "0.00%",
+        "Customer Acquisition Cost": "$0.00",
+        "Lifetime Value per Customer": "$0.00",
+        "LTV/CAC Ratio": "0.00",
+        "Churn Rate": "0.00%",
+        "Revenue per User": "$0.00",
+        "Active User Growth": "-100.00%",
+        "Brand Sentiment Score": "0.00",
+        "Competitor Funding Trends": "0.00%",
+        "Subscription Renewal Rate": "0.00%"
+    },
+    "innovation_metrics": {
+        "R&D Expenditure": "$0.00",
+        "Technology Adoption Rate": "0.00%",
+        "Talent Migration Rate": "0.00%",
+        "Geographical Expansion Rate": "0.00%",
+        "ESG Compliance Score": "0.00",
+        "Infrastructure Investment": "$0.00",
+        "Patents Count": 0,
+        "Supply Chain Efficiency": "0.00",
+        "Customer Satisfaction Index": "0.50",
+        "Regulatory Risk Score": "0.00"
+    },
+    "external_impact_metrics": {
+        "Inflation Impact": "0.00%",
+        "Interest Rate Impact": "0.00%",
+        "Global Trade Impact": "0.00%",
+        "Pandemic Impact": "0.00%",
+        "VC Market Impact": "0.00%",
+        "Stock Market Impact": "0.00%",
+        "Government Policy Impact": "0.00%",
+        "Tech Disruption Impact": "0.00%",
+        "Competitor IPO Impact": "0.00%",
+        "Geopolitical Impact": "0.00%"
+    }
+}

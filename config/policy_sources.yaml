@@ -1,0 +1,336 @@
+# Policy Sources Configuration
+# This file defines sources for policy documents and debate transcripts
+
+sources:
+  # Government and Regulatory Bodies
+  government:
+    us_federal:
+      name: "US Federal Government"
+      description: "US federal government agencies and departments"
+      sources:
+        - name: "Federal Register"
+          url: "https://www.federalregister.gov/"
+          type: "regulation"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "Congress.gov"
+          url: "https://www.congress.gov/"
+          type: "legislation"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "White House"
+          url: "https://www.whitehouse.gov/"
+          type: "executive_order"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "SEC"
+          url: "https://www.sec.gov/"
+          type: "regulation"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "CFTC"
+          url: "https://www.cftc.gov/"
+          type: "regulation"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "FDIC"
+          url: "https://www.fdic.gov/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "US"
+        - name: "OCC"
+          url: "https://www.occ.gov/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "US"
+        - name: "Federal Reserve"
+          url: "https://www.federalreserve.gov/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "US"
+
+    eu_institutions:
+      name: "European Union Institutions"
+      description: "EU institutions and regulatory bodies"
+      sources:
+        - name: "EUR-Lex"
+          url: "https://eur-lex.europa.eu/"
+          type: "legislation"
+          update_frequency: "daily"
+          jurisdiction: "EU"
+        - name: "European Commission"
+          url: "https://ec.europa.eu/"
+          type: "regulation"
+          update_frequency: "daily"
+          jurisdiction: "EU"
+        - name: "European Parliament"
+          url: "https://www.europarl.europa.eu/"
+          type: "legislation"
+          update_frequency: "daily"
+          jurisdiction: "EU"
+        - name: "European Central Bank"
+          url: "https://www.ecb.europa.eu/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "EU"
+        - name: "EBA"
+          url: "https://www.eba.europa.eu/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "EU"
+        - name: "ESMA"
+          url: "https://www.esma.europa.eu/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "EU"
+
+    uk_government:
+      name: "UK Government"
+      description: "UK government and regulatory bodies"
+      sources:
+        - name: "UK Parliament"
+          url: "https://www.parliament.uk/"
+          type: "legislation"
+          update_frequency: "daily"
+          jurisdiction: "UK"
+        - name: "UK Government"
+          url: "https://www.gov.uk/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "UK"
+        - name: "Bank of England"
+          url: "https://www.bankofengland.co.uk/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "UK"
+        - name: "FCA"
+          url: "https://www.fca.org.uk/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "UK"
+        - name: "PRA"
+          url: "https://www.bankofengland.co.uk/prudential-regulation"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "UK"
+
+    canada_government:
+      name: "Canadian Government"
+      description: "Canadian government and regulatory bodies"
+      sources:
+        - name: "Canada Gazette"
+          url: "https://gazette.gc.ca/"
+          type: "regulation"
+          update_frequency: "weekly"
+          jurisdiction: "CA"
+        - name: "Bank of Canada"
+          url: "https://www.bankofcanada.ca/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "CA"
+        - name: "OSFI"
+          url: "https://www.osfi-bsif.gc.ca/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "CA"
+
+  # International Organizations
+  international:
+    basel_committee:
+      name: "Basel Committee on Banking Supervision"
+      description: "International banking regulation standards"
+      sources:
+        - name: "BCBS Publications"
+          url: "https://www.bis.org/bcbs/"
+          type: "guidance"
+          update_frequency: "monthly"
+          jurisdiction: "international"
+
+    fintrac:
+      name: "Financial Action Task Force"
+      description: "International anti-money laundering standards"
+      sources:
+        - name: "FATF Publications"
+          url: "https://www.fatf-gafi.org/"
+          type: "guidance"
+          update_frequency: "monthly"
+          jurisdiction: "international"
+
+    g20:
+      name: "G20"
+      description: "G20 policy statements and communiques"
+      sources:
+        - name: "G20 Publications"
+          url: "https://www.g20.org/"
+          type: "guidance"
+          update_frequency: "quarterly"
+          jurisdiction: "international"
+
+  # Industry Associations and Think Tanks
+  industry:
+    fintech_associations:
+      name: "FinTech Industry Associations"
+      description: "FinTech industry groups and associations"
+      sources:
+        - name: "Innovate Finance"
+          url: "https://www.innovatefinance.com/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "UK"
+        - name: "Electronic Transactions Association"
+          url: "https://www.electran.org/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "US"
+        - name: "FinTech Australia"
+          url: "https://fintechaustralia.org.au/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "AU"
+
+    think_tanks:
+      name: "Policy Think Tanks"
+      description: "Policy research and advocacy organizations"
+      sources:
+        - name: "Brookings Institution"
+          url: "https://www.brookings.edu/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "Peterson Institute"
+          url: "https://www.piie.com/"
+          type: "guidance"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "Centre for European Policy Studies"
+          url: "https://www.ceps.eu/"
+          type: "guidance"
+          update_frequency: "weekly"
+          jurisdiction: "EU"
+
+  # News and Media Sources
+  media:
+    financial_news:
+      name: "Financial News Sources"
+      description: "Financial news and analysis"
+      sources:
+        - name: "Financial Times"
+          url: "https://www.ft.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "UK"
+        - name: "Wall Street Journal"
+          url: "https://www.wsj.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "US"
+        - name: "Reuters"
+          url: "https://www.reuters.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "international"
+        - name: "Bloomberg"
+          url: "https://www.bloomberg.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "international"
+
+    regulatory_news:
+      name: "Regulatory News Sources"
+      description: "Specialized regulatory news and analysis"
+      sources:
+        - name: "Regulatory Intelligence"
+          url: "https://www.regulatoryintelligence.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "international"
+        - name: "Compliance Week"
+          url: "https://www.complianceweek.com/"
+          type: "news"
+          update_frequency: "daily"
+          jurisdiction: "US"
+
+# Ingestion Configuration
+ingestion:
+  # Rate limiting
+  rate_limits:
+    requests_per_minute: 60
+    requests_per_hour: 1000
+    requests_per_day: 10000
+
+  # Retry configuration
+  retry:
+    max_retries: 3
+    backoff_factor: 2
+    max_backoff_seconds: 60
+
+  # Content processing
+  content_processing:
+    max_content_length: 1000000  # 1MB
+    supported_formats: ["html", "pdf", "txt", "xml"]
+    text_extraction_timeout: 30  # seconds
+    chunk_size: 1000  # characters per chunk
+
+  # Quality filters
+  quality_filters:
+    min_content_length: 100
+    max_content_length: 100000
+    required_keywords: ["regulation", "policy", "guidance", "legislation"]
+    excluded_domains: ["spam.com", "malware.com"]
+
+# Processing Configuration
+processing:
+  # Argument mining
+  argument_mining:
+    min_claim_length: 10
+    max_claim_length: 500
+    min_evidence_length: 20
+    max_evidence_length: 1000
+    confidence_threshold: 0.7
+    max_claims_per_document: 50
+
+  # Entity extraction
+  entity_extraction:
+    entity_types: ["organization", "person", "location", "policy", "regulation"]
+    min_entity_confidence: 0.8
+    max_entities_per_document: 100
+
+  # Sentiment analysis
+  sentiment_analysis:
+    min_sentiment_confidence: 0.6
+    neutral_threshold: 0.1
+
+# Storage Configuration
+storage:
+  # Database
+  database:
+    max_document_size: 10000000  # 10MB
+    max_metadata_size: 1000000   # 1MB
+    compression_enabled: true
+
+  # File storage
+  file_storage:
+    max_file_size: 50000000  # 50MB
+    supported_formats: ["pdf", "docx", "txt", "html"]
+    backup_enabled: true
+    retention_days: 365
+
+# Monitoring Configuration
+monitoring:
+  # Health checks
+  health_checks:
+    enabled: true
+    interval_seconds: 300
+    timeout_seconds: 30
+
+  # Metrics
+  metrics:
+    enabled: true
+    collection_interval: 60  # seconds
+    retention_days: 30
+
+  # Alerts
+  alerts:
+    enabled: true
+    error_threshold: 0.1  # 10% error rate
+    latency_threshold: 30  # seconds

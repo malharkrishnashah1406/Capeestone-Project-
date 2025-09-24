@@ -1,0 +1,499 @@
+# Domain Configuration
+# This file defines the available domains and their characteristics
+
+domains:
+  venture_capital:
+    name: "Venture Capital & Private Equity"
+    description: "VC/PE funds and portfolio companies"
+    category: "investment"
+    risk_profile: "high"
+    weight: 1.0
+    features:
+      dry_powder:
+        description: "Available capital for investment (float 0-1)"
+        type: "float"
+        default: 0.5
+        validation:
+          min: 0.0
+          max: 1.0
+      fund_age_years:
+        description: "Age of the fund in years (int)"
+        type: "int"
+        default: 3
+        validation:
+          min: 0
+          max: 20
+      dpi:
+        description: "Distributions to Paid-In capital ratio (float)"
+        type: "float"
+        default: 1.2
+        validation:
+          min: 0.0
+          max: 10.0
+      follow_on_rate:
+        description: "Rate of follow-on investments (float 0-1)"
+        type: "float"
+        default: 0.6
+        validation:
+          min: 0.0
+          max: 1.0
+      portfolio_size:
+        description: "Number of portfolio companies (int)"
+        type: "int"
+        default: 25
+        validation:
+          min: 1
+          max: 200
+      sector_exposure:
+        description: "Sector exposure breakdown (dict)"
+        type: "dict"
+        default:
+          fintech: 0.3
+          saas: 0.25
+          healthtech: 0.2
+          greentech: 0.15
+          other: 0.1
+      geo_exposure:
+        description: "Geographic exposure breakdown (dict)"
+        type: "dict"
+        default:
+          us: 0.6
+          eu: 0.2
+          asia: 0.15
+          other: 0.05
+
+  accelerators:
+    name: "Startup Accelerators"
+    description: "Startup accelerators and incubators"
+    category: "ecosystem"
+    risk_profile: "medium"
+    weight: 0.8
+    features:
+      cohort_size:
+        description: "Number of startups per cohort (int)"
+        type: "int"
+        default: 15
+        validation:
+          min: 1
+          max: 100
+      program_duration_weeks:
+        description: "Program duration in weeks (int)"
+        type: "int"
+        default: 12
+        validation:
+          min: 4
+          max: 52
+      investment_amount_usd:
+        description: "Investment amount per startup (float)"
+        type: "float"
+        default: 50000
+        validation:
+          min: 0
+          max: 1000000
+      equity_taken:
+        description: "Equity percentage taken (float 0-1)"
+        type: "float"
+        default: 0.07
+        validation:
+          min: 0.0
+          max: 0.5
+      success_rate:
+        description: "Historical success rate (float 0-1)"
+        type: "float"
+        default: 0.3
+        validation:
+          min: 0.0
+          max: 1.0
+      mentor_network_size:
+        description: "Number of mentors in network (int)"
+        type: "int"
+        default: 100
+        validation:
+          min: 10
+          max: 1000
+
+  saas:
+    name: "Software as a Service (SaaS)"
+    description: "SaaS startups and companies"
+    category: "technology"
+    risk_profile: "medium"
+    weight: 0.9
+    features:
+      arr:
+        description: "Annual Recurring Revenue in USD (float)"
+        type: "float"
+        default: 1000000
+        validation:
+          min: 0
+          max: 100000000
+      gross_churn:
+        description: "Gross churn rate (float 0-1)"
+        type: "float"
+        default: 0.05
+        validation:
+          min: 0.0
+          max: 1.0
+      net_churn:
+        description: "Net churn rate (float 0-1)"
+        type: "float"
+        default: 0.02
+        validation:
+          min: 0.0
+          max: 1.0
+      ltv_cac_ratio:
+        description: "Lifetime Value to Customer Acquisition Cost ratio (float)"
+        type: "float"
+        default: 3.0
+        validation:
+          min: 0.0
+          max: 20.0
+      monthly_growth_rate:
+        description: "Monthly growth rate (float 0-1)"
+        type: "float"
+        default: 0.1
+        validation:
+          min: 0.0
+          max: 1.0
+      runway_months:
+        description: "Cash runway in months (int)"
+        type: "int"
+        default: 18
+        validation:
+          min: 1
+          max: 60
+      team_size:
+        description: "Number of employees (int)"
+        type: "int"
+        default: 50
+        validation:
+          min: 1
+          max: 1000
+
+  fintech:
+    name: "Financial Technology (FinTech)"
+    description: "FinTech startups and companies"
+    category: "financial"
+    risk_profile: "high"
+    weight: 0.85
+    features:
+      tpv:
+        description: "Total Payment Volume in USD (float)"
+        type: "float"
+        default: 10000000
+        validation:
+          min: 0
+          max: 1000000000
+      fraud_rate:
+        description: "Fraud rate (float 0-1)"
+        type: "float"
+        default: 0.02
+        validation:
+          min: 0.0
+          max: 0.1
+      interchange_yield:
+        description: "Interchange yield percentage (float 0-1)"
+        type: "float"
+        default: 0.03
+        validation:
+          min: 0.0
+          max: 0.1
+      regulatory_compliance_score:
+        description: "Regulatory compliance score (float 0-1)"
+        type: "float"
+        default: 0.8
+        validation:
+          min: 0.0
+          max: 1.0
+      customer_acquisition_cost:
+        description: "Customer acquisition cost in USD (float)"
+        type: "float"
+        default: 150
+        validation:
+          min: 0
+          max: 10000
+      regulatory_licenses:
+        description: "Number of regulatory licenses (int)"
+        type: "int"
+        default: 3
+        validation:
+          min: 0
+          max: 20
+
+  healthtech_biotech:
+    name: "HealthTech & Biotech"
+    description: "Healthcare technology and biotechnology startups"
+    category: "healthcare"
+    risk_profile: "high"
+    weight: 0.75
+    features:
+      trial_phase:
+        description: "Clinical trial phase (int 1-4)"
+        type: "int"
+        default: 2
+        validation:
+          min: 1
+          max: 4
+      regulatory_stage:
+        description: "Regulatory approval stage (int 1-5)"
+        type: "int"
+        default: 2
+        validation:
+          min: 1
+          max: 5
+      rd_burn:
+        description: "R&D burn rate per month in USD (float)"
+        type: "float"
+        default: 500000
+        validation:
+          min: 0
+          max: 10000000
+      patent_count:
+        description: "Number of patents (int)"
+        type: "int"
+        default: 5
+        validation:
+          min: 0
+          max: 100
+      fda_approval_probability:
+        description: "Probability of FDA approval (float 0-1)"
+        type: "float"
+        default: 0.3
+        validation:
+          min: 0.0
+          max: 1.0
+      market_size_usd:
+        description: "Target market size in USD (float)"
+        type: "float"
+        default: 1000000000
+        validation:
+          min: 0
+          max: 100000000000
+
+  greentech:
+    name: "Green Technology"
+    description: "Green technology and sustainability startups"
+    category: "environmental"
+    risk_profile: "medium"
+    weight: 0.7
+    features:
+      carbon_price_exposure:
+        description: "Exposure to carbon pricing (float 0-1)"
+        type: "float"
+        default: 0.3
+        validation:
+          min: 0.0
+          max: 1.0
+      capex_intensity:
+        description: "Capital expenditure intensity (float 0-1)"
+        type: "float"
+        default: 0.6
+        validation:
+          min: 0.0
+          max: 1.0
+      ppa_coverage_ratio:
+        description: "Power Purchase Agreement coverage ratio (float 0-1)"
+        type: "float"
+        default: 0.7
+        validation:
+          min: 0.0
+          max: 1.0
+      regulatory_support_score:
+        description: "Regulatory support score (float 0-1)"
+        type: "float"
+        default: 0.8
+        validation:
+          min: 0.0
+          max: 1.0
+      technology_readiness_level:
+        description: "Technology readiness level (int 1-9)"
+        type: "int"
+        default: 6
+        validation:
+          min: 1
+          max: 9
+      subsidy_dependency:
+        description: "Dependency on government subsidies (float 0-1)"
+        type: "float"
+        default: 0.4
+        validation:
+          min: 0.0
+          max: 1.0
+
+  regtech_policy:
+    name: "RegTech & Policy Advocacy"
+    description: "Regulatory technology and policy advocacy startups"
+    category: "regulatory"
+    risk_profile: "medium"
+    weight: 0.6
+    features:
+      regulatory_expertise_score:
+        description: "Regulatory expertise score (float 0-1)"
+        type: "float"
+        default: 0.8
+        validation:
+          min: 0.0
+          max: 1.0
+      policy_network_size:
+        description: "Size of policy network (int)"
+        type: "int"
+        default: 50
+        validation:
+          min: 0
+          max: 500
+      compliance_automation_level:
+        description: "Level of compliance automation (float 0-1)"
+        type: "float"
+        default: 0.7
+        validation:
+          min: 0.0
+          max: 1.0
+      regulatory_change_sensitivity:
+        description: "Sensitivity to regulatory changes (float 0-1)"
+        type: "float"
+        default: 0.6
+        validation:
+          min: 0.0
+          max: 1.0
+      lobbying_budget_usd:
+        description: "Lobbying budget in USD (float)"
+        type: "float"
+        default: 100000
+        validation:
+          min: 0
+          max: 10000000
+
+  cross_border:
+    name: "Cross-Border Startups"
+    description: "Startups operating across multiple jurisdictions"
+    category: "international"
+    risk_profile: "high"
+    weight: 0.65
+    features:
+      num_jurisdictions:
+        description: "Number of jurisdictions (int)"
+        type: "int"
+        default: 3
+        validation:
+          min: 1
+          max: 50
+      regulatory_complexity_score:
+        description: "Regulatory complexity score (float 0-1)"
+        type: "float"
+        default: 0.7
+        validation:
+          min: 0.0
+          max: 1.0
+      currency_exposure:
+        description: "Currency exposure risk (float 0-1)"
+        type: "float"
+        default: 0.5
+        validation:
+          min: 0.0
+          max: 1.0
+      localization_cost_ratio:
+        description: "Localization cost ratio (float 0-1)"
+        type: "float"
+        default: 0.3
+        validation:
+          min: 0.0
+          max: 1.0
+      political_risk_score:
+        description: "Political risk score (float 0-1)"
+        type: "float"
+        default: 0.4
+        validation:
+          min: 0.0
+          max: 1.0
+
+  public_sector_funded:
+    name: "Public Sector Funded"
+    description: "Startups with significant public sector funding"
+    category: "government"
+    risk_profile: "medium"
+    weight: 0.55
+    features:
+      government_contract_value_usd:
+        description: "Value of government contracts in USD (float)"
+        type: "float"
+        default: 5000000
+        validation:
+          min: 0
+          max: 1000000000
+      public_funding_ratio:
+        description: "Ratio of public funding to total funding (float 0-1)"
+        type: "float"
+        default: 0.4
+        validation:
+          min: 0.0
+          max: 1.0
+      procurement_cycle_length_months:
+        description: "Average procurement cycle length in months (int)"
+        type: "int"
+        default: 18
+        validation:
+          min: 1
+          max: 60
+      political_affiliation_score:
+        description: "Political affiliation score (float 0-1)"
+        type: "float"
+        default: 0.5
+        validation:
+          min: 0.0
+          max: 1.0
+      regulatory_favorability:
+        description: "Regulatory favorability score (float 0-1)"
+        type: "float"
+        default: 0.6
+        validation:
+          min: 0.0
+          max: 1.0
+
+  mediatech_politicaltech:
+    name: "MediaTech & PoliticalTech"
+    description: "Media technology and political technology startups"
+    category: "media"
+    risk_profile: "high"
+    weight: 0.5
+    features:
+      content_moderation_score:
+        description: "Content moderation effectiveness score (float 0-1)"
+        type: "float"
+        default: 0.7
+        validation:
+          min: 0.0
+          max: 1.0
+      user_engagement_rate:
+        description: "User engagement rate (float 0-1)"
+        type: "float"
+        default: 0.3
+        validation:
+          min: 0.0
+          max: 1.0
+      political_sensitivity_score:
+        description: "Political sensitivity score (float 0-1)"
+        type: "float"
+        default: 0.6
+        validation:
+          min: 0.0
+          max: 1.0
+      regulatory_scrutiny_level:
+        description: "Level of regulatory scrutiny (float 0-1)"
+        type: "float"
+        default: 0.8
+        validation:
+          min: 0.0
+          max: 1.0
+      misinformation_risk:
+        description: "Risk of misinformation spread (float 0-1)"
+        type: "float"
+        default: 0.4
+        validation:
+          min: 0.0
+          max: 1.0
+
+# Global domain settings
+settings:
+  default_risk_profile: "medium"
+  max_features_per_domain: 10
+  feature_validation_enabled: true
+  auto_registration: true
